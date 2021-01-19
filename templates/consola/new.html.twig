@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Consola{% endblock %}
+
+{% block body %}
+    <h1>Nueva Consola</h1>
+
+    {{ include('consola/_form.html.twig') }}
+
+    <a href="{{ path('consola_index') }}"
+       class="btn btn-secondary btn-md active" role="button" aria-pressed="true">Volver a la lista</a>
+{% endblock %}

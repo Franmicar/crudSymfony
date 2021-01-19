@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="portada">
+    <h1>Bienvenido a la {{ title }}! ✅</h1>
+
+    <div class="container">
+        <div class="row">
+            <ul>
+                <li>Biblioteca de juegos para todos</li>
+                <li>Encuentra información de cualquier juego</li>
+                <li>Ayudanos a introducir juegos que aún no tenemos</li>
+            </ul>
+        </div>
+        <div class="row">
+            <h5>Redes:</h5>
+        </div>
+        <div class="row justify-content-md-start">
+            <div class="col col-lg-2">
+                <a href="{{ facebook }}" >
+                    <img src="{{ asset('img/facebook.png') }}" alt="facebook" class="rounded-sm"/>
+                </a>
+            </div>
+            <div class="col col-lg-2">
+                <a href="{{ twitter }}" >
+                    <img src="{{ asset('img/twitter.png') }}" alt="twitter" class="rounded-sm"/>
+                </a>
+            </div>
+            <div class="col col-lg-2">
+                <a href="{{ instagram }}" >
+                    <img src="{{ asset('img/instagram.png') }}" alt="instagram" class="rounded-sm"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Juego{% endblock %}
+
+{% block body %}
+    <h1>Juego</h1>
+
+<div class="table-responsive-md">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">Id</th>
+                <td>{{ juego.id }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Nombre</th>
+                <td>{{ juego.Nombre }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Desarrolladora</th>
+                <td>{{ juego.Desarrolladora }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Duracion</th>
+                <td>{{ juego.Duracion }} horas</td>
+            </tr>
+            <tr>
+                <th scope="row">Fecha de Salida</th>
+                <td>{{ juego.Fecha ? juego.Fecha|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Plataforma</th>
+                <td>{{ juego.Plataforma.Nombre ? juego.Plataforma.Nombre|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Genero</th>
+                <td>{{ juego.Genero ? juego.Genero|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Estado físico</th>
+                <td>{{ juego.Estado ? 'Si' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Imagen</th>
+                {% if juego.Imagen  %}
+                <td><img src="{{ asset('uploads/images/' ~ juego.Imagen) }}" width="100"/></td>
+                {% else %}
+                <td>No hay imagen</td>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('juego_index') }}"
+       class="btn btn-secondary btn-md active" role="button" aria-pressed="true">Volver a la lista</a>
+    <br/>
+    <a href="{{ path('juego_edit', {'id': juego.id}) }}"
+       class="btn btn-primary btn-md active" role="button" aria-pressed="true">Editar</a>
+
+    {{ include('juego/_delete_form.html.twig') }}
+</div>
+{% endblock %}

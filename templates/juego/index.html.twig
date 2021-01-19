@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Juego index{% endblock %}
+
+{% block body %}
+    <h1>Juegos</h1>
+
+<div class="table-responsive-md">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Desarrolladora</th>
+                <th scope="col">Fecha de salida</th>
+                <th scope="col">Género</th>
+                <th scope="col">Plataforma</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for juego in juegos %}
+            <tr>
+                <th scope="row">{{ juego.id }}</th>
+                <td>{{ juego.Nombre }}</td>
+                <td>{{ juego.Desarrolladora }}</td>
+                <td>{{ juego.Fecha ? juego.Fecha|date('Y-m-d') : '' }}</td>
+                <td>{{ juego.Genero ? juego.Genero|join(', ') : '' }}</td>
+                <td>{{ juego.Plataforma.Nombre }}</td>
+                <td>
+                    <a href="{{ path('juego_show', {'id': juego.id}) }}"
+                       class="btn btn-info btn-sm" tabindex="-1" role="button" aria-disabled="true">Mostrar</a>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a href="{{ path('juego_edit', {'id': juego.id}) }}"
+                       class="btn btn-secondary btn-sm" tabindex="-1" role="button" aria-disabled="true">Editar</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Datos no encontrados</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a href="{{ path('juego_new') }}"
+       class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Crear Juego</a>
+    {% else %}
+            <h5>Inicie sesión para agregar juegos</h5>
+    {% endif %}
+{% endblock %}

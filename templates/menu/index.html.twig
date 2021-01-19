@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Juegoteca</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            {% for key,value in items %}
+                {% if key == 'Juegos' or key == 'Consolas' %}
+                <div class="btn-group">
+                    <li class="dropdown-submenu">
+                        <button class="btn"><a href={{ value.url1 }}>{{ key }}</a></button>
+                        <button class="btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            {% if key == 'Juegos' %}
+                                <li><a href={{ value.url1 }}>Ver todos</a></li>
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <li><a href={{ value.url2 }}>Nuevo juego</a></li>
+                                {% endif %}
+                            {% elseif  key == 'Consolas' %}
+                                <li><a href={{ value.url1 }}>Ver todas</a></li>
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <li><a href={{ value.url2 }}>Nueva consola</a></li>
+                                {% endif %}
+                            {% endif %}
+                        </ul>
+                    </li>
+                </div>
+                {% else %}
+                <li class="nav-item {% if value.class is defined %}{{ value.class }}{% endif %}">
+                    <a class="nav-link" href="{{ value.url }}">{{ key }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consola index{% endblock %}
+
+{% block body %}
+    <h1>Consolas</h1>
+
+<div class="table-responsive-md">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Compañia</th>
+                <th scope="col">Fecha de salida</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for consola in consolas %}
+            <tr>
+                <th scope="row">{{ consola.id }}</th>
+                <td>{{ consola.Nombre }}</td>
+                <td>{{ consola.Compania }}</td>
+                <td>{{ consola.FechaSalida ? consola.FechaSalida|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('consola_show', {'id': consola.id}) }}"
+                       class="btn btn-info btn-sm" tabindex="-1" role="button" aria-disabled="true">Mostrar</a>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a href="{{ path('consola_edit', {'id': consola.id}) }}"
+                       class="btn btn-secondary btn-sm" tabindex="-1" role="button" aria-disabled="true">Editar</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a href="{{ path('consola_new') }}"
+       class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Crear nueva</a>
+    {% else %}
+        <h5>Inicie sesión para agregar consolas</h5>
+    {% endif %}
+{% endblock %}
