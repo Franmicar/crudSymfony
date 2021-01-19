@@ -1,0 +1,25 @@
+img{
+    width: 75px;
+    height: 75px;
+}
+
+.btn-group>li>button>a{
+    color: rgba(255,255,255,.75);
+}
+
+.btn-group>li>button{
+    padding-bottom: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 8px;
+    margin: 0;
+}
+
+.btn-group>li>ul>li>a{
+    color: rgba(255,255,255,.75);
+}
+
+.dropdown-menu{
+    padding-left: 8px;
+    background-color: #6d7986 !important;
+}
